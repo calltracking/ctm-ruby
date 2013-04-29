@@ -1,0 +1,38 @@
+* Accounts
+  x list accounts
+  - create account with shared billing
+  - create account without shared billing
+* Numbers
+  x list numbers
+  x buy number
+  x search available numbers
+  x list receiving numbers
+  x add receiving number
+  x rem receiving number
+  x get assigned source
+  x add source
+  - rem source
+
+* Receiving Numbers
+  x list receiving numbers
+  x add receiving number
+  x rem receiving number
+* Sources
+  x list sources
+  x add source
+  x rem source
+  x list numbers for the source
+* Users
+  x list users
+  x add user
+  x update user
+  x rem user
+* Webhooks
+  x list webhooks for account
+  x add webhook
+  x rem webhook
+* Calls
+  - list calls
+  - show call
+  - add sale to call
+  - rem sale from call
