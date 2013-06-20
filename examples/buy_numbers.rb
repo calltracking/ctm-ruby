@@ -4,6 +4,14 @@ require 'ctm'
 access_token = CTM::Auth.authenticate(ENV['CTM_TOKEN'], ENV['CTM_SECRET'])
 account = access_token.accounts.first
 
+# look for toll free numbers
+availble_numbers = account.numbers.search("US", :area_code => "888", :searchby => "tollfree")
+availble_numbers.each do|num|
+  puts "#{num.friendly_name} -> #{num.phone_number}"
+end
+number_to_buy = availble_numbers.first
+
+# look for local numbers
 availble_numbers = account.numbers.search("US", :area_code => "410")
 availble_numbers.each do|num|
   puts "#{num.friendly_name} -> #{num.phone_number}"

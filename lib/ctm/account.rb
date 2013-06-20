@@ -3,9 +3,6 @@ module CTM
     attr_reader :id
     attr_accessor :name, :status, :stats, :balance
 
-    # {"id"=>25, "name"=>"CallTrackingMetrics", "user_role"=>"admin", "status"=>"active",
-    # "stats"=>{"calls"=>{"2013-04-18"=>3, "2013-04-25"=>1}, "tracking_numbers"=>48},
-    # "url"=>"http://ctmdev.co/api/v1/accounts/25.json", "balance"=>{"cents"=>23739, "currency"=>"USD", "precision"=>2}}
     def initialize(data, token=nil)
       super(data, token)
       @id = data['id']
@@ -34,5 +31,10 @@ module CTM
     def webhooks(options={})
       CTM::List.new('Webhook', options.merge(:account_id => @id), @token)
     end
+
+    def calls(options={})
+      CTM::List.new('Call', options.merge(:account_id => @id), @token)
+    end
+
   end
 end
