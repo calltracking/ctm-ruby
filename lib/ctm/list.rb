@@ -20,14 +20,13 @@ module CTM
       else
         @list_type_path = @list_token_type
       end
-      if fetched_objects
-        map_data(fetched_objects)
-      else
-        fetch_page(options)
-      end
+
+      @fetched_objects = fetched_objects
+      @options = options
     end
 
     def each &block
+      load_records
       @objects.each do |obj|
         if block_given?
           block.call obj
@@ -38,10 +37,10 @@ module CTM
     end
 
     def create(options)
-      @object_klass.create(options.merge(:list_type_path => @list_type_path,
-                                         :list_token_type => @list_token_type,
-                                         :account_id => @account_id,
-                                         :token => @token))
+      @object_klass.create(options.merge(list_type_path: @list_type_path,
+                                         list_token_type: @list_token_type,
+                                         account_id: @account_id,
+                                         token: @token))
     end
 
     def find(options)
@@ -53,12 +52,27 @@ module CTM
       self
     end
 
+    def get(recordid, options={})
+      path_str = "/api/v1/#{@list_type_path}/#{recordid}.json"
+      res = self.class.get(path_str, query: options.merge(auth_token: @token))
+      data = res.parsed_response
+      @object_klass.new(data, @token) 
+    end
+
   protected
 
+    def load_records
+      if @fetched_objects
+        map_data(@fetched_objects)
+      else
+        fetch_page(@options)
+      end
+    end
+
     def fetch_page(options={})
-      options = {:per_page => 10, :page => 1}.merge(options)
+      options = {per_page: 10, page: 1}.merge(options)
       path_str = "/api/v1/#{@list_type_path}.json"
-      res = self.class.get(path_str, :query => options.merge(:auth_token => @token))
+      res = self.class.get(path_str, query: options.merge(auth_token: @token))
       data = res.parsed_response
       if data["status"] && data["status"] == "error"
         puts data.inspect

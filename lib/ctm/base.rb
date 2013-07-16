@@ -20,6 +20,7 @@ module CTM
     def save(options={})
       puts "save: #{options.inspect}"
       path_str = "/api/v1/#{@list_type_path}/#{@id}.json"
+      puts path_str
       res = self.class.put(path_str, :body => options.merge(:auth_token => @token))
     end
 
@@ -34,7 +35,7 @@ module CTM
       account_id = options.delete(:account_id)
       token = options.delete(:token)
       path_str = "/api/v1/#{list_type_path}.json"
-      puts "create: #{self} -> #{options.inspect}"
+      puts "create: #{self}(#{path_str}) -> #{options.inspect}"
       res = self.post(path_str, :body => options.merge(:auth_token => token))
       puts "result: #{res.parsed_response.inspect}"
       puts "properties: #{list_type_path.inspect} -> #{list_token_type.inspect} -> #{account_id}"

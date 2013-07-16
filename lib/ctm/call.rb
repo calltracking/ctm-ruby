@@ -30,10 +30,13 @@ module CTM
     end
 
     def record_sale(sale_detail)
-      path_str = "/api/v1/#{@list_type_path}/#{self.id}/sale_record.json"
+      path_str = "/api/v1/#{@list_type_path}/#{self.id}/sale.json"
       post_options = {}
       sale_detail.each do|k,v|
-        post_options["service_rep_call[#{k}]"] = v
+        if k.to_s == 'conversion'
+          v = v ? 'on' : 'off'
+        end
+        post_options[k] = v
       end
       res = self.class.post(path_str, :body => post_options.merge(:auth_token => @token))
       (res && res['status'] == 'success')

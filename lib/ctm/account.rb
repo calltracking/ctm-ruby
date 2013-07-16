@@ -13,27 +13,27 @@ module CTM
     end
 
     def numbers(options={})
-      CTM::NumberList.new(options.merge(:account_id => @id), @token)
+      CTM::NumberList.new(options.merge(account_id: @id), @token)
     end
 
     def receiving_numbers(options={})
-      CTM::List.new('ReceivingNumber', options.merge(:account_id => @id), @token)
+      CTM::List.new('ReceivingNumber', options.merge(account_id: @id), @token)
     end
 
     def sources(options={})
-      CTM::List.new('Source', options.merge(:account_id => @id), @token)
+      CTM::List.new('Source', options.merge(account_id: @id), @token)
     end
 
     def users(options={})
-      CTM::List.new('User', options.merge(:account_id => @id), @token)
+      CTM::List.new('User', options.merge(account_id: @id), @token)
     end
 
     def webhooks(options={})
-      CTM::List.new('Webhook', options.merge(:account_id => @id), @token)
+      CTM::List.new('Webhook', options.merge(account_id: @id), @token)
     end
 
     def calls(options={})
-      CTM::List.new('Call', options.merge(:account_id => @id), @token)
+      CTM::List.new('Call', options.merge(account_id: @id), @token)
     end
 
   end
