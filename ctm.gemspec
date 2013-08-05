@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "ctm"
-  s.version = "0.4.2"
+  s.version = "0.4.4"
   s.authors = ["CallTrackingMetrics", "Todd Fisher"]
   s.email = "info@calltrackingmetrics.com"
   s.files = `git ls-files`.split("\n")

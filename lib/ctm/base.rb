@@ -1,5 +1,16 @@
 module CTM
   class Base
+    class Location
+      attr_reader :street, :city, :state, :country, :zip
+      def initialize(street, city, state, country, zip)
+        @street = street
+        @city = city
+        @state = state
+        @country = country
+        @zip = zip
+      end
+    end
+
     include HTTParty
     base_uri ENV["CTM_URL"] || "api.calltrackingmetrics.com"
 
