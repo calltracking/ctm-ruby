@@ -4,7 +4,7 @@ module CTM
     include Enumerable
 
     include HTTParty
-    base_uri ENV["CTM_URL"] || "api.calltrackingmetrics.com"
+    base_uri "https://#{(ENV["CTM_URL"] || "api.calltrackingmetrics.com")}"
 
     attr_reader :list_type, :token, :per_page, :page, :total_entries, :objects
 

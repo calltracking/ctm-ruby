@@ -1,3 +1,5 @@
+#require 'openssl'
+#OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 $:.unshift(File.expand_path(File.join(File.dirname(__FILE__),"..", "lib")))
 require 'ctm'
 

@@ -5,6 +5,6 @@ require 'set'
 access_token = CTM::Auth.authenticate(ENV['CTM_TOKEN'], ENV['CTM_SECRET'])
 account = access_token.accounts.first
 
-call =  account.calls.get(692389)
+call =  account.calls.get(3446138)
 
 call.record_sale({value:100, conversion: true})

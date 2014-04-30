@@ -12,7 +12,7 @@ module CTM
     end
 
     include HTTParty
-    base_uri ENV["CTM_URL"] || "api.calltrackingmetrics.com"
+    base_uri "https://#{(ENV["CTM_URL"] || "api.calltrackingmetrics.com")}"
 
     attr_reader :token, :account_id
 

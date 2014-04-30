@@ -1,7 +1,7 @@
 module CTM
   class Auth
     include HTTParty
-    base_uri ENV["CTM_URL"] || "api.calltrackingmetrics.com"
+    base_uri "https://#{(ENV["CTM_URL"] || "api.calltrackingmetrics.com")}"
 
     def self.token=(token)
       @token = token
