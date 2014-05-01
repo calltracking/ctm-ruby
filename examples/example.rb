@@ -1,10 +1,6 @@
 $:.unshift(File.expand_path(File.join(File.dirname(__FILE__),"..", "lib")))
 require 'ctm'
 
-unless ENV['CTM_URL'] == 'ctmdev.co'
-  abort 'RUN ONLY IN DEV!'
-end
-
 # Authentication
 
 access_token = CTM::Auth.authenticate(ENV['CTM_TOKEN'], ENV['CTM_SECRET'])
