@@ -42,7 +42,7 @@ module CTM
     # add trackng number to tracking source
     def add(number)
       path_str = "/api/v1/#{@list_type_path}/#{number.id}/add.json"
-      puts "Add to #{@account_id}:#{@source_id} -> #{number.id} -> #{path_str}"
+      #puts "Add to #{@account_id}:#{@source_id} -> #{number.id} -> #{path_str}"
       #         accounts/25          /sources/5012     /numbers
       # /api/v1/accounts/:account_id/sources/:source_id/numbers/:id/add
       res = self.class.post(path_str, :body => {}.merge(:auth_token => @token))
@@ -54,10 +54,10 @@ module CTM
       end
     end
 
-    def rem
-      puts "Rem to #{@account_id}:#{@source_id} -> #{number.id} -> #{@list_type_path}"
-      # /api/v1/accounts/:account_id/sources/:source_id/numbers/:id/rem
-    end
+    # def rem(number)
+    #   puts "Rem to #{@account_id}:#{@source_id} -> #{number.id} -> #{@list_type_path}"
+    #   # /api/v1/accounts/:account_id/sources/:source_id/numbers/:id/rem
+    # end
 
   end
 end

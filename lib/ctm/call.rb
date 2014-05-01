@@ -4,12 +4,12 @@ module CTM
       :id, :account_id, :search, :referrer, :location, :source,
       :likelihood, :duration, :talk_time, :ring_time, :called_at, :tracking_number, :business_number,
       :dial_status, :caller_number_split, :excluded, :tracking_number_format, :business_number_format,
-      :caller_number_format, :audio, :tag_list, :latitude, :longitude, :extended_lookup, :sale
+      :caller_number_format, :audio, :tag_list, :latitude, :longitude, :extended_lookup
     ]
     ReadWriteFields = [
       :name, :email, :street, :city, :state, :country, :postal_code, :notes
     ]
-    attr_reader *ReadOnlyFields 
+    attr_reader   *ReadOnlyFields
     attr_accessor *ReadWriteFields
 
     # {"id":729485,"account_id":25,"name":"Escondido    Ca","search":null,"referrer":null,"location":null,"source":"Facebook","source_id":36,"likelihood":null,"duration":25,
@@ -29,20 +29,33 @@ module CTM
       end
     end
 
-    def record_sale(sale_detail)
-      path_str = "/api/v1/#{@list_type_path}/#{self.id}/sale.json"
-      post_options = {}
-      sale_detail.each do|k,v|
-        if k.to_s == 'conversion'
-          v = v ? 'on' : 'off'
-        end
-        post_options[k] = v
+    def save(options={})
+      #puts "save: #{options.inspect}"
+      path_str = "/api/v1/#{@list_type_path}/#{@id}/modify.json"
+
+      save_options = {}
+      ReadWriteFields.each do |field|
+        save_options[field == :notes ? :comments : field] = self.send field
       end
-      res = self.class.post(path_str, :body => post_options.merge(:auth_token => @token))
-      (res && res['status'] == 'success')
+
+      options[:call] = (options[:call] || {}).merge save_options
+
+      #puts path_str
+      self.class.put(path_str, :body => options.merge(:auth_token => @token))
     end
 
-    def update_sale(sale_detail)
+    def sale
+      path_str = "/api/v1/#{@list_type_path}/#{self.id}/sale.json"
+
+      res  = self.class.get path_str, query: {auth_token: @token}
+      data = res.parsed_response
+      if data["status"] && data["status"] == "error"
+        raise CTM::Error::Sale.new(data["message"] || data ["reason"])
+      end
+
+      data['account_id'] = @account_id
+      data['call_id'] ||= self.id
+      CTM::Sale.new(data, @token)
     end
 
   end

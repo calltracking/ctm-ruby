@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name = "ctm"
-  s.version = "0.4.4"
-  s.authors = ["CallTrackingMetrics", "Todd Fisher"]
+  s.version = "0.5.0"
+  s.authors = ["CallTrackingMetrics", "Todd Fisher", "Morgen Peschke"]
   s.email = "info@calltrackingmetrics.com"
   s.files = `git ls-files`.split("\n")
   s.test_files = `git ls-files -- {test}/*`.split("\n")
@@ -17,4 +17,3 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'fakeweb', '~> 1.3.0'
   s.add_development_dependency "rake"
 end
-

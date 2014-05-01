@@ -5,7 +5,7 @@ module CTM
 
     def initialize(data, token=nil)
       super(data, token)
-      puts data.inspect
+      #puts data.inspect
       @id = data['id']
       @name = data['name']
       @status = data['status']

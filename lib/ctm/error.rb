@@ -12,5 +12,7 @@ module CTM
     end
     class Rem < Exception
     end
+    class Sale < Exception
+    end
   end
 end
