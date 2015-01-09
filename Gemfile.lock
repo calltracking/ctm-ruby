@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    ctm (0.4.4)
+    ctm (0.5.0)
       activesupport
       httparty
       phony
