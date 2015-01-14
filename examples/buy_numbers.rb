@@ -1,7 +1,7 @@
 $:.unshift(File.expand_path(File.join(File.dirname(__FILE__),"..", "lib")))
 require 'ctm'
-$:.unshift(File.expand_path(File.join(File.dirname(__FILE__),"..", "examples")))
-require 'dev'
+#$:.unshift(File.expand_path(File.join(File.dirname(__FILE__),"..", "examples")))
+#require 'dev'
 
 puts "send authentication: #{ENV['CTM_TOKEN']}"
 
