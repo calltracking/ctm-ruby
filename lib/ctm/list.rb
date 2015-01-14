@@ -110,7 +110,7 @@ module CTM
     def map_data(data)
       @total_entries = data['total_entries']
       @total_pages   = data['total_pages']
-      @objects = data[@list_token_type].map {|obj|
+      @objects       = (data[@list_token_type]||[]).map {|obj|
         @object_klass.new(obj, @token)
       }
     end

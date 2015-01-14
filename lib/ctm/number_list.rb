@@ -24,6 +24,8 @@ module CTM
                      'per_page' => data['results'].size,
                      'total_entries' => data['results'].size}
         CTM::List.new('AvailableNumber', {:account_id => @account_id}, @token, list_data)
+      else
+        raise CTM::Error::List.new(data["error"])
       end
     end
 
