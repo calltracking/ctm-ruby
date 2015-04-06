@@ -30,9 +30,10 @@ module CTM
     end
 
     # buy number with the digits
-    def buy(digits)
+    def buy(digits, options={})
       path_str = "/api/v1/#{@list_type_path}.json"
-      res = self.class.post(path_str, :body => {:phone_number => digits}.merge(:auth_token => @token))
+      res = self.class.post(path_str, :body => {:phone_number => digits}.merge(options).
+                                                                         merge(:auth_token => @token))
       if res && res['status'] == 'success'
         CTM::Number.new(res['number'], @token)
       else

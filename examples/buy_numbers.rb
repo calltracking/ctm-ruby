@@ -22,8 +22,8 @@ availble_numbers.each do|num|
 end
 number_to_buy = availble_numbers.first
 
-#number = account.numbers.buy("+15005550006")
-#puts "purchased: #{number.formatted} #{number.number}"
+number = account.numbers.buy(number_to_buy, {test:1})
+puts "purchased: #{number.formatted} #{number.number}"
 
 
 # look for a UK local number
