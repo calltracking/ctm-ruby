@@ -23,6 +23,10 @@ module CTM
       CTM::List.new('ReceivingNumber', options.merge(account_id: @id), @token)
     end
 
+    def target_numbers(options={})
+      CTM::List.new('TargetNumber', options.merge(account_id: @id), @token)
+    end
+
     def sources(options={})
       CTM::List.new('Source', options.merge(account_id: @id), @token)
     end

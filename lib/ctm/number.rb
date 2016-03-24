@@ -14,8 +14,19 @@ module CTM
       @routing    = data['routing']
     end
 
+    def save
+      options = {
+        :name => @name,
+      }
+      super(options)
+    end
+
     def receiving_numbers(options={})
       CTM::ReceivingNumberList.new(options.merge(:account_id => @account_id, :number_id => @id), @token)
+    end
+
+    def target_numbers(options={})
+      CTM::TargetNumberList.new(options.merge(:account_id => @account_id, :number_id => @id), @token)
     end
 
     def source

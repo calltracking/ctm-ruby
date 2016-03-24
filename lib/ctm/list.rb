@@ -72,7 +72,7 @@ module CTM
       @filters = options
 
       self.page = 1
-      self
+      load_records
     end
 
     def get(recordid, options={})
@@ -110,7 +110,15 @@ module CTM
     def map_data(data)
       @total_entries = data['total_entries']
       @total_pages   = data['total_pages']
-      @objects       = (data[@list_token_type]||[]).map {|obj|
+
+      # special case for target numbers
+      if @list_token_type == 'target_numbers'
+        list_name = 'numbers'
+      else
+        list_name = @list_token_type
+      end
+
+      @objects       = (data[list_name]||[]).map {|obj|
         @object_klass.new(obj, @token)
       }
     end
