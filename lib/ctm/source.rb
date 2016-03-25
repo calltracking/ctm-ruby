@@ -22,7 +22,7 @@ module CTM
         :online        => @online,
         :referring_url => @referring_url,
         :landing_url   => @landing_url,
-        :source_tag    => @crm_tag
+        :crm_tag       => @crm_tag
       }
       super(options)
     end
