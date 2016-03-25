@@ -1,7 +1,7 @@
 module CTM
   class Source < Base
     attr_reader :id, :account_id
-    attr_accessor :name, :referring_url, :landing_url, :position, :online
+    attr_accessor :name, :referring_url, :landing_url, :position, :online, :crm_tag
 
     def initialize(data, token=nil)
       super(data, token)
@@ -12,15 +12,17 @@ module CTM
       @landing_url   = data['landing_url']
       @position      = data['position']
       @online        = data['online']
+      @crm_tag       = data['crm_tag']
     end
 
     def save
       options = {
-        :name => @name,
-        :position => @position,
-        :online => @online,
+        :name          => @name,
+        :position      => @position,
+        :online        => @online,
         :referring_url => @referring_url,
-        :landing_url => @landing_url
+        :landing_url   => @landing_url,
+        :source_tag    => @crm_tag
       }
       super(options)
     end
