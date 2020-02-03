@@ -7,7 +7,6 @@ Gem::Specification.new do |s|
   s.test_files = `git ls-files -- {test}/*`.split("\n")
   s.homepage = "http://github.com/calltracking/ctm-ruby"
   s.require_path = "lib"
-  s.rubygems_version = "1.3.5"
   s.summary = "API Library for CallTrackingMetrics"
   s.add_runtime_dependency "phony"
   s.add_runtime_dependency "httparty"
