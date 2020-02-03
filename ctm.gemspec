@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency "phony"
   s.add_runtime_dependency "httparty"
   s.add_runtime_dependency "activesupport"
-  s.add_development_dependency "rack",  '~> 1.3.0'
+  s.add_development_dependency "rack",  '~> 1.6.12'
   s.add_development_dependency "mocha"
   s.add_development_dependency 'fakeweb', '~> 1.3.0'
   s.add_development_dependency "rake"
