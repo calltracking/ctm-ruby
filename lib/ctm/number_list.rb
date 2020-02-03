@@ -37,6 +37,9 @@ module CTM
       if res && res['status'] == 'success'
         CTM::Number.new(res['number'], @token)
       else
+        options = {}
+        options[:test] = 1 if Rails.env != 'production'
+        number = account.numbers.buy(number_to_buy, options)
         puts res.inspect
         raise CTM::Error::Buy.new(res["reason"])
       end

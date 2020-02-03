@@ -22,6 +22,7 @@ availble_numbers.each do|num|
 end
 number_to_buy = availble_numbers.first
 
+# gem 'ctm-ruby', :git => "git@github.com:calltracking/ctm-ruby.git", :branch => "master"
 number = account.numbers.buy(number_to_buy, {test:1})
 puts "purchased: #{number.formatted} #{number.number}"
 
