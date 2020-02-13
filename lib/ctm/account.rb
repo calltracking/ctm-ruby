@@ -9,7 +9,6 @@ module CTM
       @id = data['id']
       @name = data['name']
       @status = data['status']
-      @stats = data['stats']['calls']
       if data['balance']
         @balance = "$" + (data['balance']['cents'].to_i / 100).to_s + "." + (data['balance']['cents'].to_i % 100).to_s
       end
